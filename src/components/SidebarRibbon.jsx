@@ -1,13 +1,19 @@
-import React from "react";
+import { useContext } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { VisibilityContext } from "../App";
 
 function SidebarRibbon() {
+  const { popupVisibility, setPopupVisibility } = useContext(VisibilityContext);
+
   return (
     <div className="side-ribbon px-4">
       <div className="side-upper flex justify-between py-3 items-center">
         <div className="round-img w-12 h-12"></div>
-        <IoMdAddCircleOutline className="addIcon" />
+        <IoMdAddCircleOutline
+          onClick={() => setPopupVisibility((prev) => !prev)}
+          className="addIcon"
+        />
       </div>
       <div className="inputArea">
         <input

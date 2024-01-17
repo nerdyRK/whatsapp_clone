@@ -52,7 +52,7 @@
 }
 
 .min-h-customHeight {
-  height: 74vh;
+  height: 80vh;
   /* max-width: fit-content; */
   /* Adjust the percentage as needed */
 }
@@ -83,7 +83,7 @@
 }
 
 .deleteIcon {
-  color: #a32424;
+  color: tomato;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -103,8 +103,55 @@
   right: 10px;
 }
 
+.cancelIcon {
+  font-size: 1.3rem;
+  color: tomato;
+}
+
 .send-input {
   border: none;
   outline: none;
   /* border-top: 1px solid green; */
+}
+
+.popup {
+  position: absolute;
+  /* scale: 0; */
+  top: 35%;
+  left: 40%;
+  background: #000;
+  padding: 2rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.popup-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding-left: 4px;
+  border-bottom: 2px solid aliceblue;
+  transition: all 0.3s ease-out;
+}
+
+.popup-input:hover {
+  box-shadow: 0px 0px 2px whitesmoke;
+  transform: scale(1.1);
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  /* Width of the entire scrollbar */
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(37, 1, 37);
+  /* Color of the thumb (the draggable part) */
+  border-radius: 6px;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
