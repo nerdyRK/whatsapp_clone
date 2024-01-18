@@ -7,18 +7,18 @@ function SidebarRibbon() {
   const { popupVisibility, setPopupVisibility } = useContext(VisibilityContext);
 
   return (
-    <div className="side-ribbon px-4">
-      <div className="side-upper flex justify-between py-3 items-center">
-        <div className="round-img w-12 h-12"></div>
+    <div className="side-ribbon ">
+      <div className="side-upper px-4 flex justify-between py-2 items-center">
+        <div className="round-img"></div>
         <IoMdAddCircleOutline
           title="Add a chat"
           onClick={() => setPopupVisibility((prev) => !prev)}
           className="addIcon"
         />
       </div>
-      <div className="inputArea">
+      <div className="inputArea w-full px-6 py-3">
         <input
-          className="side-input w-full pl-6 px-2 text-black border-none outline-none mx-auto py-2 border rounded-md block"
+          className=" side-input w-full pl-10 px-2 text-white  mx-auto py-2 border rounded-md block"
           placeholder="Write something here.."
           type="text"
         />

@@ -10,6 +10,18 @@ function App() {
   let [sideChatsObj, setSideChatsObj] = useState([
     { name: "Ravi", desc: "Just a Programmer 💻" },
     { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
+    { name: "Ravi", desc: "Just a Programmer 💻" },
+    { name: "Raj", desc: "Unknown Description ❓" },
   ]);
 
   return (

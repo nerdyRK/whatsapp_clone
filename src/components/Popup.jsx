@@ -73,7 +73,8 @@ function Popup() {
         <div className="flex justify-between mt-4">
           <label
             htmlFor="file"
-            className="file-input w-full hover:bg-green-300"
+            className="file-input w-full hover:bg-green-300 hover:text-black"
+            style={{ transition: "all 0.3s ease" }}
           >
             Select a Profile Picture
           </label>
@@ -87,6 +88,7 @@ function Popup() {
         </div>
         <button
           onClick={handleAdd}
+          style={{ transition: "all 0.3s ease" }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
         >
           Add

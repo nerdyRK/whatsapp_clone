@@ -2,20 +2,29 @@ import React from "react";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 
 function SideChat({ data, index }) {
-  console.log();
+  let date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (minutes.toString().length == 1) {
+    minutes = "0" + minutes;
+  }
+  let time = `${hours}:${minutes}Pm`;
   return (
-    <div className="sidechat flex justify-between items-center px-4 py-1 text-white border border-gray-500  ">
-      <div className="info border-spacing-1s flex items-center">
-        <div className="round-img w-11 h-11">
-          <img src={data[index].img} alt="" />
+    <>
+      <div className="sidechat flex justify-between items-center px-4 py-1 text-white">
+        <div className="info border-spacing-1s flex items-center">
+          <div className="round-img w-11 h-11">
+            <img src="../assets/react.svg" alt="" />
+          </div>
+          <div>
+            <h2 className="name ">{data[index].name}</h2>
+            <small className="desc ">{data[index].desc}</small>
+          </div>
         </div>
-        <div>
-          <h2 className="name ">{data[index].name}</h2>
-          <small className="desc ">{data[index].desc}</small>
-        </div>
+        {/* <RiDeleteBack2Fill className="deleteIcon" /> */}
+        <small>{time}</small>
       </div>
-      <RiDeleteBack2Fill className="deleteIcon" />
-    </div>
+    </>
   );
 }
 
