@@ -1,35 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import SideChat from "./SideChat";
+import { SideChatsContext } from "../App";
 
 function SidebarChats() {
+  const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
   return (
     <div className="mt-3 side-chats w-full min-h-customHeight ">
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
-      <SideChat />
+      {sideChatsObj.map((box, i) => {
+        return <SideChat data={sideChatsObj} index={i} />;
+      })}
     </div>
   );
 }

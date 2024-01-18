@@ -11,6 +11,7 @@ function SidebarRibbon() {
       <div className="side-upper flex justify-between py-3 items-center">
         <div className="round-img w-12 h-12"></div>
         <IoMdAddCircleOutline
+          title="Add a chat"
           onClick={() => setPopupVisibility((prev) => !prev)}
           className="addIcon"
         />
