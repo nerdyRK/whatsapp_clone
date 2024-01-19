@@ -19,7 +19,7 @@ function SendMsg() {
           placeholder="Type a message"
         ></input>
         <MdOutlineEmojiEmotions
-          style={{ fontSize: "1.4rem", cursor: "pointer" }}
+          style={{ fontSize: "1.4rem", cursor: "pointer", color: "grey" }}
           className="absolute top-2 left-4"
         />
       </div>

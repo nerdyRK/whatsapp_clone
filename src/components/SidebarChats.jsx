@@ -4,15 +4,15 @@ import { SideChatsContext } from "../App";
 
 function SidebarChats() {
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
+  function handleChatDelete(id) {
+    setSideChatsObj((prevState) => prevState.filter((item) => item.id !== id));
+  }
+
   return (
-    <div className="mt-3 side-chats w-full min-h-customHeight ">
-      {sideChatsObj.map((box, i) => {
-        return (
-          <>
-            <SideChat data={sideChatsObj} index={i} />
-          </>
-        );
-      })}
+    <div className=" side-chats w-full min-h-customHeight ">
+      {sideChatsObj.map((box, i) => (
+        <SideChat key={box.id} onDelete={handleChatDelete} data={box} />
+      ))}
     </div>
   );
 }

@@ -9,14 +9,16 @@ function Popup() {
 
   let [name, setName] = useState("");
   let [desc, setDesc] = useState("");
-  let [img, setImg] = useState("");
+  let [phone, setPhone] = useState("");
+  const [image, setImage] = useState(null);
 
   let handleCancel = (e) => {
     e.preventDefault();
     setPopupVisibility(false);
   };
 
-  let handleAdd = () => {
+  let handleAdd = (e) => {
+    e.preventDefault();
     let newChatObj = {};
     if (name) newChatObj.name = name;
     if (desc) {
@@ -24,23 +26,36 @@ function Popup() {
     } else {
       newChatObj.desc = "No Need";
     }
-    if (img) newChatObj.img = img;
+    if (image) newChatObj.image = image;
+    newChatObj.id = Date.now();
     if (name) setSideChatsObj([...sideChatsObj, newChatObj]);
     setName("");
     setDesc("");
-    console.log(sideChatsObj);
+    setPhone("");
+    // console.log(sideChatsObj);
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setImage(null);
+    }
   };
 
   return (
     <div
-      className={"popup"}
+      className="popup bg-[aliceblue]"
       style={{ transform: popupVisibility ? "scale(1)" : "scale(0)" }}
     >
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="flex flex-col "
-        action=""
-      >
+      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col ">
         <button onClick={handleCancel} className="">
           <MdCancel
             title="Cancel"
@@ -56,6 +71,7 @@ function Popup() {
             className="popup-input"
             type="text"
             id="name"
+            autoComplete="nope"
             required
           />
         </div>
@@ -68,8 +84,23 @@ function Popup() {
             placeholder="Enter a description"
             type="text"
             id="Desc"
+            autoComplete="nope"
           />
         </div>
+
+        <div className="flex justify-between mt-4">
+          <label htmlFor="phone" style={{ transition: "all 0.3s ease" }}>
+            Phone
+          </label>
+          <input
+            placeholder="Phone number"
+            onChange={(e) => setPhone(e.target.value)}
+            className="popup-input"
+            type="tel"
+            id="phone"
+          />
+        </div>
+
         <div className="flex justify-between mt-4">
           <label
             htmlFor="file"
@@ -79,11 +110,13 @@ function Popup() {
             Select a Profile Picture
           </label>
           <input
-            onChange={(e) => setImg(e.target.value)}
+            // onChange={(e) => setimage(e.target.value)}
             className="popup-input"
             style={{ display: "none" }}
             type="file"
             id="file"
+            accept="image/*"
+            onChange={handleImageUpload}
           />
         </div>
         <button
