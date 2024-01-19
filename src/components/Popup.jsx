@@ -55,7 +55,7 @@ function Popup() {
       className="popup bg-[aliceblue]"
       style={{ transform: popupVisibility ? "scale(1)" : "scale(0)" }}
     >
-      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col ">
+      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col">
         <button onClick={handleCancel} className="">
           <MdCancel
             title="Cancel"

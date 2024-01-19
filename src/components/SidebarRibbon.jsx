@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { VisibilityContext } from "../App";
 import { MdAddComment } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { VisibilityContext } from "../App";
+import { SideChatsContext } from "../App";
 
-function SidebarRibbon() {
+function SidebarRibbon({ inputValue, onInputChange }) {
   const { popupVisibility, setPopupVisibility } = useContext(VisibilityContext);
+  const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
 
   return (
     <div className="side-ribbon ">
@@ -86,8 +88,11 @@ function SidebarRibbon() {
           </span>
         </div>
       </div>
+
       <div className="inputArea w-full px-6 py-3">
         <input
+          onChange={onInputChange}
+          value={inputValue}
           className=" side-input w-full pl-10 px-2 mx-auto py-2 border rounded-md block"
           placeholder="Write something here.."
           type="text"
