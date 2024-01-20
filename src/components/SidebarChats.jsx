@@ -1,14 +1,18 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, memo, useEffect } from "react";
 import SideChat from "./SideChat";
 import { SideChatsContext } from "../App";
 
 function SidebarChats({ inputValue }) {
+  // console.log(inputValue);
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
+
   const filteredChats = useMemo(() => {
-    return sideChatsObj.filter((chat) => chat.name.includes(inputValue));
+    return sideChatsObj.filter((chat) => {
+      // chat.name = chat.name.toLowerCase();
+      return chat.name.includes(inputValue);
+    });
   }, [inputValue, sideChatsObj]);
 
-  //* here we are using concept of lifting up the state means getting data in parent from Child (id)
   function handleChatDelete(id) {
     setSideChatsObj((prevState) => prevState.filter((item) => item.id !== id));
   }
@@ -22,4 +26,5 @@ function SidebarChats({ inputValue }) {
   );
 }
 
-export default SidebarChats;
+//* React.memo re-renders when the data passes through props change here it seems useless to me as with every inputValue it re-renders that i wanna prevent
+export default memo(SidebarChats);

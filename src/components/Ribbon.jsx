@@ -5,21 +5,21 @@ import { MdAddCall } from "react-icons/md";
 
 import { SideChatsContext } from "../App";
 
-function Ribbon() {
+function Ribbon({ selectedChat }) {
   //TO-DO
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
   return (
     <div className="ribbon py-1 flex items-center justify-between">
-      <div className="flex items-center">
-        <img className="round-img" />
+      <div className="flex flex-shrink-3 items-center">
+        <img className="round-img object-cover" src={selectedChat.image} />
         <div className="textArea">
-          <h2 className="ribbon-name">Name</h2>
-          <small className="ribbon-desc">desciption</small>
+          <h2 className="ribbon-name">{selectedChat.name}</h2>
+          <small className="ribbon-desc">{selectedChat.desc}</small>
         </div>
       </div>
       <div
-        className="icons text-gray-600 flex mr-6 w-1/6 justify-around"
-        style={{ fontSize: "1.3rem", cursor: "pointer" }}
+        className="icons text-gray-600 flex mr-6 w-1/6 min-w-[80px] justify-around"
+        style={{ fontSize: "clamp(22px,22px,22px)", cursor: "pointer" }}
       >
         <MdAddCall />
         <IoIosSearch style={{ fontWeight: "bolder" }} />

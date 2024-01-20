@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { RiDeleteBack2Fill } from "react-icons/ri";
+import { ChatIdContext } from "../App";
 
-function SideChat({ data, onDelete }) {
+function SideChat({ data, onDelete, onClick }) {
+  const handleChatId = useContext(ChatIdContext);
+
   let date = new Date();
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -13,16 +17,16 @@ function SideChat({ data, onDelete }) {
     onDelete(data.id);
   }
 
+  // function handleRibbon() {}
+
   return (
     <>
       <div
+        onClick={() => handleChatId(data.id)}
         // key={data.id}
-        className="sidechat flex justify-between items-center px-4 py-2 text-black"
+        className="sidechat cursor-pointer flex justify-between items-center px-4 py-2 text-black"
       >
-        <div
-          onClick={() => handleRibbon(data.id)}
-          className="info border-spacing-1s flex items-center"
-        >
+        <div className="info border-spacing-1s flex items-center">
           <div className="round-img w-11 h-11">
             <img src={data.image} alt="" />
           </div>
