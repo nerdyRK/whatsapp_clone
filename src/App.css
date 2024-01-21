@@ -29,8 +29,6 @@
   overflow-y: hidden;
   justify-content: space-between;
   margin: auto;
-
-  /* padding: 20px; */
   height: 94vh;
 }
 
@@ -85,7 +83,7 @@
 }
 
 .min-h-customHeight {
-  height: 80vh;
+  max-height: 75vh;
   /* max-width: fit-content; */
   /* Adjust the percentage as needed */
 }
@@ -209,6 +207,24 @@
   background-color: #fff;
 }
 
-.desc {
+small.desc {
   color: #333;
+  /* width: 50%; */
+}
+
+.chatDesc {
+
+  width: clamp(40px, 80%, 220px)
+}
+
+.chat-area {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  /* justify-content: flex-end; */
+  height: 75vh;
+  overflow-y: auto;
+  padding: 1.2rem 2.6rem;
+
+
 }

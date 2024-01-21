@@ -11,10 +11,11 @@ export const ChatIdContext = createContext();
 
 function App() {
   let [popupVisibility, setPopupVisibility] = useState(false);
-  let [sideChatsObj, setSideChatsObj] = useState([
-    { id: 1, name: "Ravi", desc: "Just a Programmer 💻" },
-    { id: 2, name: "Raj", desc: "Unknown Description ❓" },
-  ]);
+  const savedSideChatsObj = localStorage.getItem("sideChatsObj");
+  const initialSideChatsObj = savedSideChatsObj
+    ? JSON.parse(savedSideChatsObj)
+    : [];
+  let [sideChatsObj, setSideChatsObj] = useState(initialSideChatsObj);
 
   const [selectedChat, setSelectedChat] = useState({
     name: "user",
@@ -23,7 +24,7 @@ function App() {
   });
 
   const handleChatId = (id) => {
-    console.log("Chat ID: ", id);
+    // console.log("Chat ID: ", id);
     let theChat = sideChatsObj.find((chat) => chat.id === id);
     setSelectedChat(theChat);
     // console.log(selectedChat[0]);

@@ -18,7 +18,7 @@ function SidebarChats({ inputValue }) {
   }
 
   return (
-    <div className=" side-chats w-full min-h-customHeight ">
+    <div className=" side-chats w-full   min-h-customHeight ">
       {filteredChats.map((box, i) => (
         <SideChat key={box.id} onDelete={handleChatDelete} data={box} />
       ))}

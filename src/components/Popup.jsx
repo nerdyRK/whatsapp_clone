@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import { VisibilityContext } from "../App";
 import { SideChatsContext } from "../App";
@@ -12,12 +12,12 @@ function Popup() {
   let [phone, setPhone] = useState("");
   const [image, setImage] = useState(null);
 
-  let handleCancel = (e) => {
+  function handleCancel(e) {
     e.preventDefault();
     setPopupVisibility(false);
-  };
+  }
 
-  let handleAdd = (e) => {
+  function handleAdd(e) {
     e.preventDefault();
     let newChatObj = {};
     if (name) newChatObj.name = name;
@@ -32,19 +32,62 @@ function Popup() {
     setName("");
     setDesc("");
     setPhone("");
-    // console.log(sideChatsObj);
-  };
+    console.log(sideChatsObj);
+    // localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
+  }
 
-  const handleImageUpload = (event) => {
+  //* we wrote it in useEffect so that id has the latest data as set state is asynchronous in nature
+  useEffect(() => {
+    localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
+  }, [sideChatsObj]);
+
+  function resizeImage(file, maxWidth) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxWidth) {
+            width *= maxWidth / height;
+            height = maxWidth;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL());
+      };
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onloadend = () => {
-      setImage(reader.result);
+    reader.onloadend = async () => {
+      try {
+        const dataUrl = await resizeImage(file, 200); // Resize to 200 pixels wide
+        setImage(dataUrl);
+      } catch (err) {
+        console.error("Failed to resize image:", err);
+      }
     };
 
     if (file) {
-      reader.readAsDataURL(file);
+      reader.readAsArrayBuffer(file);
     } else {
       setImage(null);
     }
@@ -55,7 +98,7 @@ function Popup() {
       className="popup bg-[aliceblue]"
       style={{ transform: popupVisibility ? "scale(1)" : "scale(0)" }}
     >
-      <form onSubmit={(e) => e.preventDefault()} className="flex flex-col">
+      <form onSubmit={handleAdd} className="flex flex-col">
         <button onClick={handleCancel} className="">
           <MdCancel
             title="Cancel"

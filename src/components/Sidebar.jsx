@@ -11,7 +11,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar h-full">
       <SidebarRibbon
         inputValue={inputValue}
         onInputChange={handleInputChange}

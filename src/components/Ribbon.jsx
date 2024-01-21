@@ -9,12 +9,12 @@ function Ribbon({ selectedChat }) {
   //TO-DO
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
   return (
-    <div className="ribbon py-1 flex items-center justify-between">
+    <div className="ribbon py-2 flex items-center justify-between">
       <div className="flex flex-shrink-3 items-center">
         <img className="round-img object-cover" src={selectedChat?.image} />
         <div className="textArea">
           <h2 className="ribbon-name">{selectedChat?.name}</h2>
-          <small className="ribbon-desc">{selectedChat?.desc}</small>
+          {/* <small className="ribbon-desc">{selectedChat?.desc}</small> */}
         </div>
       </div>
       <div

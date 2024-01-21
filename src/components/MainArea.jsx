@@ -3,9 +3,9 @@ import Ribbon from "./Ribbon";
 import MaxPart from "./MaxPart";
 
 function MainArea({ selectedChat }) {
-  console.log(selectedChat);
+  // console.log(selectedChat);
   return (
-    <div className="main-area h-full flex flex-col">
+    <div className="main-area h-full overflow-y-hidden flex flex-col">
       <Ribbon selectedChat={selectedChat} />
       <MaxPart />
     </div>
