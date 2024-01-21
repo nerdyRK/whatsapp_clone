@@ -15,10 +15,12 @@ function SidebarChats({ inputValue }) {
 
   function handleChatDelete(id) {
     setSideChatsObj((prevState) => prevState.filter((item) => item.id !== id));
+
+    localStorage.removeItem(`${id}`);
   }
 
   return (
-    <div className=" side-chats w-full   min-h-customHeight ">
+    <div className=" side-chats w-full min-h-customHeight ">
       {filteredChats.map((box, i) => (
         <SideChat key={box.id} onDelete={handleChatDelete} data={box} />
       ))}
