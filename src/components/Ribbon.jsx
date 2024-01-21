@@ -11,10 +11,10 @@ function Ribbon({ selectedChat }) {
   return (
     <div className="ribbon py-1 flex items-center justify-between">
       <div className="flex flex-shrink-3 items-center">
-        <img className="round-img object-cover" src={selectedChat.image} />
+        <img className="round-img object-cover" src={selectedChat?.image} />
         <div className="textArea">
-          <h2 className="ribbon-name">{selectedChat.name}</h2>
-          <small className="ribbon-desc">{selectedChat.desc}</small>
+          <h2 className="ribbon-name">{selectedChat?.name}</h2>
+          <small className="ribbon-desc">{selectedChat?.desc}</small>
         </div>
       </div>
       <div

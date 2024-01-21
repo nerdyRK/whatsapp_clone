@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import MainArea from "./components/MainArea";
 import "./App.css";
@@ -19,14 +19,23 @@ function App() {
   const [selectedChat, setSelectedChat] = useState({
     name: "user",
     desc: "",
+    image: "",
   });
 
   const handleChatId = (id) => {
     console.log("Chat ID: ", id);
-    let theChat = sideChatsObj.filter((chat) => chat.id === id);
-    setSelectedChat(theChat[0]);
+    let theChat = sideChatsObj.find((chat) => chat.id === id);
+    setSelectedChat(theChat);
     // console.log(selectedChat[0]);
   };
+
+  useEffect(() => {
+    setSelectedChat({
+      name: "user",
+      desc: "",
+      image: "",
+    });
+  }, [sideChatsObj]);
 
   return (
     <VisibilityContext.Provider value={{ popupVisibility, setPopupVisibility }}>
