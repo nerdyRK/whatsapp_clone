@@ -22,7 +22,7 @@ function Ribbon({ selectedChat }) {
         style={{ fontSize: "clamp(22px,22px,22px)", cursor: "pointer" }}
       >
         <MdAddCall />
-        <IoIosSearch className="" style={{ fontWeight: "bolder" }} />
+        <IoIosSearch style={{ fontWeight: "bolder" }} />
         <span data-icon="menu" className="">
           <svg
             viewBox="0 0 24 24"

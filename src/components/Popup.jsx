@@ -36,7 +36,7 @@ function Popup() {
     // localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }
 
-  //* we wrote it in useEffect so that id has the latest data as set state is asynchronous in nature
+  //* we wrote it in useEffect so that it has the latest data as set state is asynchronous in nature
   useEffect(() => {
     localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }, [sideChatsObj]);

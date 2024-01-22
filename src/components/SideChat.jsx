@@ -8,7 +8,7 @@ function SideChat({ data, onDelete, onClick }) {
   let date = new Date();
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  if (minutes.toString().length == 1) {
+  if (minutes.toString().length === 1) {
     minutes = "0" + minutes;
   }
   let time = `${hours}:${minutes}Pm`;

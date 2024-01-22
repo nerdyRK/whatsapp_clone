@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import MainArea from "./components/MainArea";
+
 import "./App.css";
 
 export const VisibilityContext = createContext();
