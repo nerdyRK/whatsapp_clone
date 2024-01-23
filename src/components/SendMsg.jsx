@@ -16,7 +16,7 @@ function SendMsg({ setChat, chat }) {
     e.preventDefault();
     // console.log(userId);
     if (chatInput !== "" && userId !== 0) {
-      let userIndex = chat.findIndex((obj) => obj.userId === userIdToCheck);
+      let userIndex = chat.findIndex((obj) => obj.userId === userId);
       console.log(userIndex);
 
       let newChat = chatInput.trim();
