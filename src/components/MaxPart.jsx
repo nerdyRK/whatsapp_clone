@@ -2,16 +2,17 @@ import { useContext, useState } from "react";
 import Popup from "./Popup";
 import SendMsg from "./SendMsg";
 import ChatArea from "./ChatArea";
-// import { VisibilityContext } from "../App";
+import { ChatAreaChats } from "../App";
 
 function MaxPart() {
-  let [chat, setChat] = useState([]);
+  let { chats, setChats } = useContext(ChatAreaChats);
+  // console.log(chats);
 
   return (
     <div className="max-part h-full flex flex-col justify-between">
       <Popup />
-      <ChatArea chat={chat} />
-      <SendMsg setChat={setChat} chat={chat} />
+      <ChatArea chat={chats} />
+      <SendMsg setChat={setChats} chat={chats} />
     </div>
   );
 }

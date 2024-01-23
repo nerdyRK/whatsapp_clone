@@ -6,6 +6,9 @@ import "./App.css";
 
 export const VisibilityContext = createContext();
 export const SideChatsContext = createContext();
+export const ChatAreaChats = createContext();
+export const SetChatAreaChats = createContext();
+export const IdContext = createContext();
 
 //*getting the chat id from SideChat component
 export const ChatIdContext = createContext();
@@ -16,26 +19,33 @@ function App() {
   const initialSideChatsObj = savedSideChatsObj
     ? JSON.parse(savedSideChatsObj)
     : [];
+
   let [sideChatsObj, setSideChatsObj] = useState(initialSideChatsObj);
 
+  let [chats, setChats] = useState([]);
+
   const [selectedChat, setSelectedChat] = useState({
+    id: 0,
     name: "user",
     desc: "",
     image: "",
   });
 
+  let [key, setKey] = useState(0);
+
   const handleChatId = (id) => {
-    // console.log("Chat ID: ", id);
+    setKey(id);
     let theChat = sideChatsObj.find((chat) => chat.id === id);
     setSelectedChat(theChat);
-    // console.log(selectedChat[0]);
   };
 
+  // console.log(key);
   useEffect(() => {
     setSelectedChat({
       name: "user",
       desc: "",
       image: "",
+      chats: [],
     });
   }, [sideChatsObj]);
 
@@ -43,11 +53,15 @@ function App() {
     <VisibilityContext.Provider value={{ popupVisibility, setPopupVisibility }}>
       <SideChatsContext.Provider value={{ sideChatsObj, setSideChatsObj }}>
         <ChatIdContext.Provider value={handleChatId}>
-          <div className="app">
-            <div className="greenbg absolute"></div>
-            <Sidebar />
-            <MainArea selectedChat={selectedChat} />
-          </div>
+          <ChatAreaChats.Provider value={{ chats, setChats }}>
+            <IdContext.Provider value={key}>
+              <div className="app">
+                <div className="greenbg absolute"></div>
+                <Sidebar />
+                <MainArea selectedChat={selectedChat} />
+              </div>
+            </IdContext.Provider>
+          </ChatAreaChats.Provider>
         </ChatIdContext.Provider>
       </SideChatsContext.Provider>
     </VisibilityContext.Provider>

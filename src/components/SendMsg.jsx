@@ -1,19 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { FaMicrophone } from "react-icons/fa6";
 
 import { IoSend } from "react-icons/io5";
+import { SideChatsContext } from "../App";
+import { IdContext } from "../App";
 
 function SendMsg({ setChat, chat }) {
   let [chatInput, setChatInput] = useState("");
+  const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
+  const userId = useContext(IdContext);
 
   function handleSend(e) {
     e.preventDefault();
-    if (chatInput !== "") {
-      const newMessage = chatInput.trim();
-      const msgid = Date.now();
-      setChat([...chat, { msgid, newMessage }]);
+    // console.log(userId);
+    if (chatInput !== "" && userId !== 0) {
+      let userIndex = chat.findIndex((obj) => obj.userId === userIdToCheck);
+      console.log(userIndex);
+
+      let newChat = chatInput.trim();
+      if (userIndex !== -1) {
+        let user = chat[userIndex];
+        newChat = user.chat.concat(newChat);
+
+        // Add the new message to the user's chat array
+
+        // Create a new user object with the updated chat array
+        let newUser = { ...user, chat: newChat };
+
+        // Replace the old user object in the array with the new user object
+        let newchat = [...chat];
+        newchat[userIndex] = newUser;
+
+        // Update the state with the new array
+        setChat(newchat);
+      } else {
+        let newObj = { userId, chat: [newChat] };
+        setChat([...chat, newObj]);
+      }
+
       setChatInput("");
     }
   }
