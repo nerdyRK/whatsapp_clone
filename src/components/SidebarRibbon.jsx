@@ -99,7 +99,7 @@ function SidebarRibbon({ inputValue, onInputChange }) {
           onChange={onInputChange}
           value={inputValue}
           className=" side-input w-full pl-10 px-2 mx-auto py-2 border rounded-md block"
-          placeholder="Write something here.."
+          placeholder="Write something here"
           type="text"
         />
         <IoIosSearch className="searchIcon" />
