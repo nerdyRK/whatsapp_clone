@@ -71,7 +71,7 @@ function SidebarRibbon({ inputValue, onInputChange }) {
           <MdAddComment
             title="Add a chat"
             onClick={() => setPopupVisibility((prev) => !prev)}
-            className="addIcon"
+            className="addIcon text-green-400"
           />
 
           <span data-icon="menu" className="">
@@ -94,11 +94,11 @@ function SidebarRibbon({ inputValue, onInputChange }) {
         </div>
       </div>
 
-      <div className="inputArea w-full px-6 py-3">
+      <div className="inputArea w-full  px-6 py-3">
         <input
           onChange={onInputChange}
           value={inputValue}
-          className=" side-input w-full pl-10 px-2 mx-auto py-2 border rounded-md block"
+          className="shadow-sm shadow-green-400 side-input w-full pl-10 px-2 mx-auto py-2 border rounded-md block"
           placeholder="Enter something here"
           type="text"
         />

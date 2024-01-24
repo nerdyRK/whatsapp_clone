@@ -52,7 +52,7 @@ function SendMsg({ setChat, chat }) {
         <input
           value={chatInput}
           onChange={(e) => setChatInput(e.target.value)}
-          className="inputArea send-input w-full p-2 pl-14 pr-20 rounded-lg"
+          className="shadow-sm shadow-green-400 inputArea send-input w-full p-2 pl-14 pr-20 rounded-lg"
           type="text"
           placeholder="Type a message"
         ></input>

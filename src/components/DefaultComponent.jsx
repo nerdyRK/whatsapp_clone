@@ -3,8 +3,12 @@ import whatsappDefault from "../assets/whatsapp_default.jpg";
 
 function DefaultComponent() {
   return (
-    <div className="main-area bg-[#f0f2f5]">
-      <img src={whatsappDefault} alt="whatsapp no chats image" />
+    <div className="main-area w-full h-full bg-[#f0f2f5]">
+      <img
+        src={whatsappDefault}
+        className="w-full h-full min-w-[600px]"
+        alt="whatsapp no chats image"
+      />
     </div>
   );
 }
