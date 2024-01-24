@@ -33,6 +33,7 @@ function Popup() {
     setDesc("");
     setPhone("");
     console.log(sideChatsObj);
+    setPopupVisibility(false);
     // localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }
 

@@ -38,6 +38,9 @@ function SendMsg({ setChat, chat }) {
       setChatInput("");
     }
   }
+  useEffect(() => {
+    localStorage.setItem("chatsObj", JSON.stringify(chat));
+  }, [sideChatsObj]);
 
   return (
     <div className="send-msg w-full bg-black-900 flex items-center justify-between relative">

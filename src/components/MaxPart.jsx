@@ -10,7 +10,6 @@ function MaxPart() {
 
   return (
     <div className="max-part h-full flex flex-col justify-between">
-      <Popup />
       <ChatArea chat={chats} />
       <SendMsg setChat={setChats} chat={chats} />
     </div>

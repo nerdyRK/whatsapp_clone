@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import Sidebar from "./components/Sidebar";
 import MainArea from "./components/MainArea";
+import DefaultComponent from "./components/DefaultComponent";
+import Popup from "./components/Popup";
 
 import "./App.css";
 
@@ -22,8 +24,9 @@ function App() {
 
   let [sideChatsObj, setSideChatsObj] = useState(initialSideChatsObj);
   // console.log(sideChatsObj);
-
-  let [chats, setChats] = useState([]);
+  const savedChatsObj = localStorage.getItem("chatsObj");
+  const initialChatsObj = savedChatsObj ? JSON.parse(savedChatsObj) : [];
+  let [chats, setChats] = useState(initialChatsObj);
 
   let [selectedChat, setSelectedChat] = useState({
     id: 0,
@@ -42,7 +45,7 @@ function App() {
 
   //* the ribbon was dependent on selectedChat which was on sideChatObj so every second text it was getting to default value so we remmebred it
   selectedChat = useMemo(() => {
-    return sideChatsObj.find((chat) => chat.id === selectedChat.id);
+    return sideChatsObj.find((chat) => chat.id === selectedChat.id) || 0;
   }, [selectedChat.id]);
 
   return (
@@ -53,8 +56,15 @@ function App() {
             <IdContext.Provider value={key}>
               <div className="app">
                 <div className="greenbg absolute"></div>
+                <Popup />
+
                 <Sidebar />
-                <MainArea selectedChat={selectedChat} />
+                {console.log(selectedChat.id)}
+                {selectedChat.id ? (
+                  <MainArea selectedChat={selectedChat} />
+                ) : (
+                  <DefaultComponent />
+                )}
               </div>
             </IdContext.Provider>
           </ChatAreaChats.Provider>
