@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import { ChatIdContext } from "../App";
 
-function SideChat({ data, onDelete, onClick }) {
+function SideChat({ data, onDelete }) {
   const handleChatId = useContext(ChatIdContext);
+
+  // console.log(data);
 
   let date = new Date();
   let hours = date.getHours();
@@ -16,8 +18,6 @@ function SideChat({ data, onDelete, onClick }) {
   function handleChatDelete() {
     onDelete(data.id);
   }
-
-  // function handleRibbon() {}
 
   return (
     <>

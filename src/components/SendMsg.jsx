@@ -14,20 +14,15 @@ function SendMsg({ setChat, chat }) {
 
   function handleSend(e) {
     e.preventDefault();
-    // console.log(userId);
+    // console.log("key", userId);
     if (chatInput !== "" && userId !== 0) {
       let userIndex = chat.findIndex((obj) => obj.userId === userId);
-      console.log(userIndex);
-
+      // console.log(userIndex);
       let newChat = chatInput.trim();
       if (userIndex !== -1) {
         let user = chat[userIndex];
-        newChat = user.chat.concat(newChat);
-
-        // Add the new message to the user's chat array
-
-        // Create a new user object with the updated chat array
-        let newUser = { ...user, chat: newChat };
+        newChat = user.chats.concat(newChat);
+        let newUser = { ...user, chats: newChat };
 
         // Replace the old user object in the array with the new user object
         let newchat = [...chat];
@@ -36,7 +31,7 @@ function SendMsg({ setChat, chat }) {
         // Update the state with the new array
         setChat(newchat);
       } else {
-        let newObj = { userId, chat: [newChat] };
+        let newObj = { userId, chats: [newChat] };
         setChat([...chat, newObj]);
       }
 

@@ -24,7 +24,7 @@ function Popup() {
     if (desc) {
       newChatObj.desc = desc;
     } else {
-      newChatObj.desc = "No Need";
+      newChatObj.desc = "....";
     }
     if (image) newChatObj.image = image;
     newChatObj.id = Date.now();

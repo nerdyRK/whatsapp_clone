@@ -14,30 +14,28 @@ function ChatArea({ chat }) {
   }
 
   let time = `${hours}:${minutes}Pm`;
-  let [shouldRender, setShouldRender] = useState(false);
+  let [shouldRender, setShouldRender] = useState(true);
 
-  useEffect(() => {
-    setShouldRender(true);
-  }, [chat]);
+  // useEffect(() => {
+  //   setShouldRender(true);
+  // }, [chat]);
 
+  //* this is for the time when no chat is selected we'll just show a logo in chats reegion
   if (!shouldRender) {
     return null;
   }
 
-  console.log(chat);
+  // console.log(chat);
 
   // console.log("chat area");
   return (
     <div className="chat-area ">
-      {chat[userIndex]?.chat
+      {chat[userIndex]?.chats
         .slice()
         .reverse()
         .map((msg, i) => (
-          <>
-            <p
-              className="bg-green-300 m-2 rounded-lg relative  py-2 pr-14 pl-4 right-0 bottom-0"
-              key={msg.msgid}
-            >
+          <div key={i}>
+            <p className="bg-green-300 m-2 rounded-lg relative  py-2 pr-14 pl-4 right-0 bottom-0">
               {msg}
               <span
                 className="absolute top-3 right-0"
@@ -46,7 +44,7 @@ function ChatArea({ chat }) {
                 {time}
               </span>
             </p>
-          </>
+          </div>
         ))}
     </div>
   );

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useMemo } from "react";
 import Sidebar from "./components/Sidebar";
 import MainArea from "./components/MainArea";
 
@@ -21,10 +21,11 @@ function App() {
     : [];
 
   let [sideChatsObj, setSideChatsObj] = useState(initialSideChatsObj);
+  // console.log(sideChatsObj);
 
   let [chats, setChats] = useState([]);
 
-  const [selectedChat, setSelectedChat] = useState({
+  let [selectedChat, setSelectedChat] = useState({
     id: 0,
     name: "user",
     desc: "",
@@ -39,15 +40,10 @@ function App() {
     setSelectedChat(theChat);
   };
 
-  // console.log(key);
-  useEffect(() => {
-    setSelectedChat({
-      name: "user",
-      desc: "",
-      image: "",
-      chats: [],
-    });
-  }, [sideChatsObj]);
+  //* the ribbon was dependent on selectedChat which was on sideChatObj so every second text it was getting to default value so we remmebred it
+  selectedChat = useMemo(() => {
+    return sideChatsObj.find((chat) => chat.id === selectedChat.id);
+  }, [selectedChat.id]);
 
   return (
     <VisibilityContext.Provider value={{ popupVisibility, setPopupVisibility }}>

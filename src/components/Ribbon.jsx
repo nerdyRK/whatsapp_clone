@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { IoIosSearch } from "react-icons/io";
 // import { CiMenuKebab } from "react-icons/ci";
 import { MdAddCall } from "react-icons/md";
@@ -7,13 +7,14 @@ import { SideChatsContext } from "../App";
 
 function Ribbon({ selectedChat }) {
   //TO-DO
+  // console.log(selectedChat);
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
   return (
     <div className="ribbon py-2 flex items-center justify-between">
       <div className="flex flex-shrink-3 items-center">
         <img className="round-img object-cover" src={selectedChat?.image} />
         <div className="textArea">
-          <h2 className="ribbon-name">{selectedChat?.name}</h2>
+          <h2 className="ribbon-name">{selectedChat?.name || "USER"}</h2>
           {/* <small className="ribbon-desc">{selectedChat?.desc}</small> */}
         </div>
       </div>
@@ -45,4 +46,4 @@ function Ribbon({ selectedChat }) {
   );
 }
 
-export default Ribbon;
+export default memo(Ribbon);
