@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import Popup from "./Popup";
+import { useContext } from "react";
 import SendMsg from "./SendMsg";
 import ChatArea from "./ChatArea";
 import { ChatAreaChats } from "../App";

@@ -3,41 +3,42 @@ import { FaPlus } from "react-icons/fa6";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { FaMicrophone } from "react-icons/fa6";
 
+//* this may be needed in mobile devices as now msgs are going on enter
 import { IoSend } from "react-icons/io5";
 import { SideChatsContext } from "../App";
 import { IdContext } from "../App";
 
 function SendMsg({ setChat, chat }) {
   let [chatInput, setChatInput] = useState("");
-  const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
+  const { sideChatsObj } = useContext(SideChatsContext);
   const userId = useContext(IdContext);
 
   function handleSend(e) {
     e.preventDefault();
-    // console.log("key", userId);
+    //* default userId is 0
     if (chatInput !== "" && userId !== 0) {
+      //* checking if there is any chat for the user
       let userIndex = chat.findIndex((obj) => obj.userId === userId);
-      // console.log(userIndex);
       let newChat = chatInput.trim();
       if (userIndex !== -1) {
         let user = chat[userIndex];
         newChat = user.chats.concat(newChat);
         let newUser = { ...user, chats: newChat };
 
-        // Replace the old user object in the array with the new user object
-        let newchat = [...chat];
-        newchat[userIndex] = newUser;
+        //* Replace the old user object in the chat array with the new user object
+        let allChats = [...chat];
+        allChats[userIndex] = newUser;
 
         // Update the state with the new array
-        setChat(newchat);
+        setChat(allChats);
       } else {
         let newObj = { userId, chats: [newChat] };
         setChat([...chat, newObj]);
       }
-
       setChatInput("");
     }
   }
+
   useEffect(() => {
     localStorage.setItem("chatsObj", JSON.stringify(chat));
   }, [sideChatsObj]);

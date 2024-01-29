@@ -1,17 +1,17 @@
 import React, { useContext, useMemo, memo, useEffect } from "react";
 import SideChat from "./SideChat";
-import { SideChatsContext, IdContext, ChatAreaChats } from "../App";
+import { SideChatsContext, ChatAreaChats } from "../App";
 
 function SidebarChats({ inputValue }) {
   // console.log(inputValue);
   const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
   const { chats, setChats } = useContext(ChatAreaChats);
-  const userId = useContext(IdContext);
   // console.log(sideChatsObj);
 
   //TODO making desc as last chat msg with matching id
+  //* can we do this sideChat instead to not re-render whole sideChatObj??
   useEffect(() => {
-    console.log(sideChatsObj);
+    // console.log(sideChatsObj);
     sideChatsObj?.forEach((sideChat) => {
       let latestMsg = chats.find((chat) => chat.userId == sideChat.id);
       if (latestMsg) {
@@ -22,11 +22,11 @@ function SidebarChats({ inputValue }) {
     setSideChatsObj([...sideChatsObj]);
   }, [chats]);
 
+  //* its just for sideChat search functionality
   const filteredChats = useMemo(() => {
-    return sideChatsObj.filter((chat) => {
-      // chat.name = chat.name.toLowerCase();
-      return chat.name.toLowerCase().includes(inputValue.toLowerCase());
-    });
+    return sideChatsObj.filter((chat) =>
+      chat.name.toLowerCase().includes(inputValue.toLowerCase())
+    );
   }, [inputValue, sideChatsObj]);
 
   function handleChatDelete(id) {

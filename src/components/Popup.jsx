@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import { VisibilityContext } from "../App";
 import { SideChatsContext } from "../App";
+import { resizeImage } from "./resizeImage";
 
 function Popup() {
   const { popupVisibility, setPopupVisibility } = useContext(VisibilityContext);
@@ -10,7 +11,7 @@ function Popup() {
   let [name, setName] = useState("");
   let [desc, setDesc] = useState("");
   let [phone, setPhone] = useState("");
-  const [image, setImage] = useState(null);
+  let [image, setImage] = useState(null);
 
   function handleCancel(e) {
     e.preventDefault();
@@ -21,19 +22,17 @@ function Popup() {
     e.preventDefault();
     let newChatObj = {};
     if (name) newChatObj.name = name;
-    if (desc) {
-      newChatObj.desc = desc;
-    } else {
-      newChatObj.desc = "....";
-    }
+    if (desc) newChatObj.desc = desc;
+    else newChatObj.desc = "....";
+    if (phone) newChatObj.phone = phone;
     if (image) newChatObj.image = image;
+
     newChatObj.id = Date.now();
     if (name) setSideChatsObj([...sideChatsObj, newChatObj]);
     setName("");
     setDesc("");
     setPhone("");
-    console.log(sideChatsObj);
-    setPopupVisibility(false);
+    // console.log(sideChatsObj);
     // localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }
 
@@ -42,45 +41,13 @@ function Popup() {
     localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }, [sideChatsObj]);
 
-  function resizeImage(file, maxWidth) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > maxWidth) {
-            height *= maxWidth / width;
-            width = maxWidth;
-          }
-        } else {
-          if (height > maxWidth) {
-            width *= maxWidth / height;
-            height = maxWidth;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
-        resolve(canvas.toDataURL());
-      };
-      img.onerror = reject;
-      img.src = URL.createObjectURL(file);
-    });
-  }
-
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
     reader.onloadend = async () => {
       try {
-        const dataUrl = await resizeImage(file, 200); // Resize to 200 pixels wide
+        const dataUrl = await resizeImage(file, 200); // Resize to 200 pixels
         setImage(dataUrl);
       } catch (err) {
         console.error("Failed to resize image:", err);

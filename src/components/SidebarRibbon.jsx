@@ -4,11 +4,9 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdAddComment } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { VisibilityContext } from "../App";
-import { SideChatsContext } from "../App";
 
 function SidebarRibbon({ inputValue, onInputChange }) {
   const { popupVisibility, setPopupVisibility } = useContext(VisibilityContext);
-  const { sideChatsObj, setSideChatsObj } = useContext(SideChatsContext);
 
   return (
     <div className="side-ribbon ">

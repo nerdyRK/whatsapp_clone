@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { RiDeleteBack2Fill } from "react-icons/ri";
+// import { RiDeleteBack2Fill } from "react-icons/ri";
 import { ChatIdContext } from "../App";
 
 function SideChat({ data, onDelete }) {
+  //* this is for getting ID of selected chat and using it in send Area
   const handleChatId = useContext(ChatIdContext);
 
   // console.log(data);
@@ -23,7 +24,6 @@ function SideChat({ data, onDelete }) {
     <>
       <div
         onClick={() => handleChatId(data.id)}
-        // key={data.id}
         className="sidechat cursor-pointer flex justify-between flex-nowrap items-center px-2 py-2 text-black"
       >
         <section className="info flex w-[80%] items-center">

@@ -1,9 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext, useMemo } from "react";
 import { IdContext } from "../App";
 
 function ChatArea({ chat }) {
   const id = useContext(IdContext);
-  let userIndex = chat.findIndex((obj) => obj.userId === id);
+  const userIndex = useMemo(
+    () => chat.findIndex((obj) => obj.userId === id),
+    [chat, id]
+  );
   // console.log("area: ", userIndex);
 
   let date = new Date();
