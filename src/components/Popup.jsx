@@ -21,17 +21,20 @@ function Popup() {
   function handleAdd(e) {
     e.preventDefault();
     let newChatObj = {};
-    if (name) newChatObj.name = name;
-    if (desc) newChatObj.desc = desc;
-    else newChatObj.desc = "....";
-    if (phone) newChatObj.phone = phone;
-    if (image) newChatObj.image = image;
+    if (name) {
+      newChatObj.name = name;
+      if (desc) newChatObj.desc = desc;
+      else newChatObj.desc = "....";
+      if (phone) newChatObj.phone = phone;
+      if (image) newChatObj.image = image;
 
-    newChatObj.id = Date.now();
-    if (name) setSideChatsObj([...sideChatsObj, newChatObj]);
-    setName("");
-    setDesc("");
-    setPhone("");
+      newChatObj.id = Date.now();
+      if (name) setSideChatsObj([...sideChatsObj, newChatObj]);
+      setName("");
+      setDesc("");
+      setPhone("");
+      setPopupVisibility(false);
+    }
     // console.log(sideChatsObj);
     // localStorage.setItem("sideChatsObj", JSON.stringify(sideChatsObj));
   }

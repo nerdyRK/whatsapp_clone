@@ -22,11 +22,11 @@ function SideChat({ data, onDelete }) {
 
   return (
     <>
-      <div
-        onClick={() => handleChatId(data.id)}
-        className="sidechat cursor-pointer flex justify-between flex-nowrap items-center px-2 py-2 text-black"
-      >
-        <section className="info flex w-[80%] items-center">
+      <div className="sidechat cursor-pointer flex justify-between flex-nowrap items-center px-2 py-2 text-black">
+        <section
+          onClick={() => handleChatId(data.id)}
+          className="info flex w-[80%] items-center"
+        >
           <div className="round-img w-11 h-11">
             <img src={data.image} alt="" />
           </div>
