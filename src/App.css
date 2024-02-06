@@ -167,6 +167,7 @@
   top: 35%;
   left: 50%;
   background: #000000a5;
+  z-index: 333;
   padding: 2rem 4rem;
   transition: transform 0.3s ease-in-out;
 }
@@ -280,6 +281,16 @@ small.desc {
     min-height: 100vh;
   }
 
+  .popup {
+    position: absolute;
+    /* scale: 0; */
+    top: 35%;
+    left: 10%;
+    background: #000000a5;
+    z-index: 333;
+    padding: 2rem 4rem;
+    transition: transform 0.3s ease-in-out;
+  }
 }
 
 @media(max-width:1480px) {
