@@ -1,10 +1,13 @@
 import { useContext } from "react";
-// import { RiDeleteBack2Fill } from "react-icons/ri";
+import { RiDeleteBack2Fill } from "react-icons/ri";
 import { ChatIdContext } from "../App";
+
+import { ToggleSidebarContext } from "../App";
 
 function SideChat({ data, onDelete }) {
   //* this is for getting ID of selected chat and using it in send Area
   const handleChatId = useContext(ChatIdContext);
+  let { toggleSidebar, isSidebarVisible } = useContext(ToggleSidebarContext);
 
   // console.log(data);
 
@@ -24,7 +27,10 @@ function SideChat({ data, onDelete }) {
     <>
       <div className="sidechat cursor-pointer flex justify-between flex-nowrap items-center px-2 py-2 text-black">
         <section
-          onClick={() => handleChatId(data.id)}
+          onClick={() => {
+            handleChatId(data.id);
+            toggleSidebar();
+          }}
           className="info flex w-[80%] items-center"
         >
           <div className="round-img w-11 h-11">
@@ -35,10 +41,10 @@ function SideChat({ data, onDelete }) {
             <small className="desc ">{data.desc}</small>
           </div>
         </section>
-        {/* <RiDeleteBack2Fill className="deleteIcon" /> */}
-        <small className="cursor-pointer" onClick={handleChatDelete}>
-          {time}
-        </small>
+        <RiDeleteBack2Fill className="deleteIcon" onClick={handleChatDelete} />
+        {/* <small className="cursor-pointer" onClick={handleChatDelete}> */}
+        {/* {time}
+        </small> */}
       </div>
       <hr />
     </>

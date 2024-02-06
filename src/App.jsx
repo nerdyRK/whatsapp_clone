@@ -15,9 +15,17 @@ export const IdContext = createContext();
 //*getting the chat id from SideChat component onClick
 export const ChatIdContext = createContext();
 
+export const ToggleSidebarContext = createContext();
+
 function App() {
   // console.log(1);
   let [popupVisibility, setPopupVisibility] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true); // State to control sidebar visibility
+
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible);
+  };
+
   const savedSideChatsObj = localStorage.getItem("sideChatsObj");
   const initialSideChatsObj = savedSideChatsObj
     ? JSON.parse(savedSideChatsObj)
@@ -57,17 +65,19 @@ function App() {
         <ChatIdContext.Provider value={handleChatId}>
           <ChatAreaChats.Provider value={{ chats, setChats }}>
             <IdContext.Provider value={key}>
-              <div className="app">
-                <div className="greenbg absolute"></div>
-                <Popup />
-                <Sidebar />
-                {console.log(selectedChat.id)}
-                {selectedChat.id ? (
-                  <MainArea selectedChat={selectedChat} />
-                ) : (
-                  <DefaultComponent />
-                )}
-              </div>
+              <ToggleSidebarContext.Provider value={{toggleSidebar,isSidebarVisible}}>
+                <div className="app">
+                  <div className="greenbg absolute"></div>
+                  <Popup />
+                  <Sidebar />
+
+                  {selectedChat.id != undefined ? (
+                    <MainArea selectedChat={selectedChat} />
+                  ) : (
+                    <DefaultComponent />
+                  )}
+                </div>
+              </ToggleSidebarContext.Provider>
             </IdContext.Provider>
           </ChatAreaChats.Provider>
         </ChatIdContext.Provider>

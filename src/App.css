@@ -238,6 +238,47 @@ small.desc {
   overflow-y: auto;
   padding: 1.2rem 2.6rem;
 
+}
+
+.cross {
+  display: none;
+}
+
+.backIcon {
+  display: none;
+}
+
+@media(max-width:600px) {
+
+  .app {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .cross {
+    display: block;
+  }
+
+  .backIcon {
+    display: block;
+    margin: 0 10px;
+  }
+
+  .sidebar {
+    min-width: 100vw;
+    color: #186e9f;
+    /* opacity: 0; */
+    z-index: 1;
+    /* background-color: #5c91b0; */
+  }
+
+  .main-area {
+    width: 100vw;
+    position: absolute;
+    /* transform: translateX(25vw); */
+    /* z-index: -1; */
+    min-height: 100vh;
+  }
 
 }
 
@@ -248,4 +289,6 @@ small.desc {
     width: 100vw;
     height: 100vh;
   }
+
+
 }
