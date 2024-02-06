@@ -234,8 +234,10 @@ small.desc {
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
+  align-self: stretch;
+  justify-self: stretch;
   /* justify-content: flex-end; */
-  height: 75vh;
+  min-height: 80vh;
   overflow-y: auto;
   padding: 1.2rem 2.6rem;
 
@@ -267,6 +269,7 @@ small.desc {
 
   .sidebar {
     min-width: 100vw;
+    height: 95vh;
     color: #186e9f;
     /* opacity: 0; */
     z-index: 1;
@@ -278,7 +281,7 @@ small.desc {
     position: absolute;
     /* transform: translateX(25vw); */
     /* z-index: -1; */
-    min-height: 100vh;
+    height: 90vh;
   }
 
   .popup {
@@ -288,7 +291,7 @@ small.desc {
     left: 10%;
     background: #000000a5;
     z-index: 333;
-    padding: 2rem 4rem;
+    padding: 1.5rem;
     transition: transform 0.3s ease-in-out;
   }
 }
@@ -301,5 +304,8 @@ small.desc {
     height: 100vh;
   }
 
+  .chat-area {
+    height: 75vh;
+  }
 
 }
