@@ -38,7 +38,7 @@ function ChatArea({ chat }) {
         .reverse()
         .map((msg, i) => (
           <div key={i}>
-            <p className="bg-green-300 m-2 rounded-lg relative  py-2 pr-14 pl-4 right-0 bottom-0">
+            <p className="bg-green-300 my-2 rounded-lg relative  py-2 pr-14 pl-4 right-0 bottom-0">
               {msg}
               <span
                 className="absolute top-3 right-0"

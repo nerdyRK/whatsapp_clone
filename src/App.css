@@ -237,7 +237,7 @@ small.desc {
   align-self: stretch;
   justify-self: stretch;
   /* justify-content: flex-end; */
-  min-height: 80vh;
+  min-height: 75vh;
   overflow-y: auto;
   padding: 1.2rem 2.6rem;
 
@@ -261,6 +261,8 @@ small.desc {
   .cross {
     display: block;
   }
+
+
 
   .backIcon {
     display: block;
@@ -293,6 +295,11 @@ small.desc {
     z-index: 333;
     padding: 1.5rem;
     transition: transform 0.3s ease-in-out;
+  }
+
+  .chat-area {
+    padding: 0.6rem 0.7rem;
+
   }
 }
 
