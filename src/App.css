@@ -8,7 +8,7 @@
 :root {
   background: #cecccc;
   display: grid;
-  height: 100vh;
+  height: 100dvh;
   place-items: center;
 }
 
